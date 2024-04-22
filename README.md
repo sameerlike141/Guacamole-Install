@@ -2,7 +2,7 @@
 <h1 align="center">:avocado: Easy Guacamole Installer & Jump-Host Builder</h1> 
  <p align="center">
 <a href="https://www.paypal.com/donate/?business=PSZ878JBJDMB8&amount=10&no_recurring=0&item_name=Thankyou+for+your+support+in+maintaining+this+project&currency_code=AUD">
-  <img src="https://github.com/itiligent/Guacamole-Install/raw/main/.github/ISSUE_TEMPLATE/paypal-donate-button.png" width="125" />
+  <img src="https://github.com/sameerlike141/Guacamole-Install/raw/main/.github/ISSUE_TEMPLATE/paypal-donate-button.png" width="125" />
 </a>
 
 This suite of build and management scripts makes setting up a secure Guacamole jump server a breeze. Its got installer support for TLS reverse proxy (self sign or LetsEncrypt), Active Directory integration, multi-factor authentication, Quick Connect & History Recording Storage UI enhancements, a custom UI theme creation template with dark mode as default, auto database backup, O365 email alerts, internal daemon security hardening options and even a fail2ban policy for defence against brute force attacks. There's also code in here to get you up and running with an enterprise deployment approach very similar to [Amazon's Guacmole Bastion Cluster](http://netcubed-ami.s3-website-us-east-1.amazonaws.com/guaws/v2.3.1/cluster/), if that's your thing!
@@ -12,7 +12,7 @@ This suite of build and management scripts makes setting up a secure Guacamole j
 <img src="https://github.githubassets.com/images/icons/emoji/rocket.png" width="23"> To start building your Guacamole appliance, paste the below link into a terminal and just follow the option prompts **(no need for sudo, but you must be a member of the sudo group)**:
 
 ```shell
-wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.sh && chmod +x 1-setup.sh && ./1-setup.sh
+wget https://raw.githubusercontent.com/sameerlike141/Guacamole-Install/main/1-setup.sh && chmod +x 1-setup.sh && ./1-setup.sh
 ```
 
 ## Prerequisites 
@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.
     - **Ubuntu 23.04, 22.04, 20.04**
     - **Raspbian Buster or Bullseye**
     - **Official vendor cloud images equivalent to the above versions.** 
-      - (if your cloud image uses an IP of 127.0.1.1, [see here to use TLS with Nginx](https://github.com/itiligent/Guacamole-Install/issues/21))
+      - (if your cloud image uses an IP of 127.0.1.1, [see here to use TLS with Nginx](https://github.com/sameerlike141/Guacamole-Install/issues/21))
 - **1 CPU core + 2GB RAM for every 25 users (plus minimum RAM & disk space for your selected OS).**
 - **Open TCP ports: 22, 80, and 443 (no other services using 80, 8080 & 443)**
 - **If selecting either of the TLS reverse proxy options, you must create an internal DNS record for the internal proxy site, and an additional public DNS record if using the LetsEncypt option.**
@@ -68,7 +68,7 @@ wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.
 
 ## Customise & Brand Your Guacamole Theme
 
-<img src="https://github.githubassets.com/images/icons/emoji/art.png" width="23"> **Want to give Guacamole your personal touch? Follow the theme and branding instructions** [here](https://github.com/itiligent/Guacamole-Install/tree/main/guac-custom-theme-builder). To revert to the Guacamole default theme, simply delete the branding.jar file from /etc/guacamole/extensions then `sudo systemctl restart tomcat[version] && sudo systemctl restart guacd && sudo systemctl restart nginx` and don't forget to clear your web browser cache.
+<img src="https://github.githubassets.com/images/icons/emoji/art.png" width="23"> **Want to give Guacamole your personal touch? Follow the theme and branding instructions** [here](https://github.com/sameerlike141/Guacamole-Install/tree/main/guac-custom-theme-builder). To revert to the Guacamole default theme, simply delete the branding.jar file from /etc/guacamole/extensions then `sudo systemctl restart tomcat[version] && sudo systemctl restart guacd && sudo systemctl restart nginx` and don't forget to clear your web browser cache.
 
 ## Managing self signed TLS certs with Nginx (the easy way!)
 
@@ -77,7 +77,7 @@ wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.
 
 ## Active Directory SSO Integration
 
-<img src="https://github.githubassets.com/images/icons/emoji/key.png" width="23"> **Need help with Active Directory authentication?** Check [here](https://github.com/itiligent/Guacamole-Install/blob/main/ACTIVE-DIRECTORY-HOW-TO.md).
+<img src="https://github.githubassets.com/images/icons/emoji/key.png" width="23"> **Need help with Active Directory authentication?** Check [here](https://github.com/sameerlike141/Guacamole-Install/blob/main/ACTIVE-DIRECTORY-HOW-TO.md).
 
 ## Upgrading Guacamole
 
@@ -89,7 +89,7 @@ wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.
 
  A simple benefit of using a separate MySQL backend server or MYSQL container means you can upgrade and test whilst keeping all your data and connection profiles intact. Just point this installer to your MySQL instance and immediately all your connection profiles and settings are right there!
 
-- **For the DATABASE layer:** Find the included  `install-mysql-backend-only.sh` [here](https://github.com/itiligent/Guacamole-Install/tree/main/guac-enterprise-build) to install a standalone instance of the Guacamole MySQL database for your backend.
+- **For the DATABASE layer:** Find the included  `install-mysql-backend-only.sh` [here](https://github.com/sameerlike141/Guacamole-Install/tree/main/guac-enterprise-build) to install a standalone instance of the Guacamole MySQL database for your backend.
 - **For the APPLICATION layer:** You can use the main setup script to build as many application servers as you like.  Simply run the main installer to point new installations to a separate remote backend database, just make sure to say **no** to both the "Install MySQL locally" option and any other reverse proxy install options.
 - **For the Front end**: There are so many choices available that are already very well documented. You could even use the Nginx scripts to build a separate TLS front end layer. Be aware that [HA Proxy](https://www.haproxy.org/) generally provides far superior session persistence/affinity under load balanced conditions [when compared to Open Source Nginx](https://www.nginx.com/products/nginx/compare-models/) as only Nginx Plus subscribers get all the proper load balancing stuff!
 
